@@ -1,0 +1,21 @@
+language: python
+
+python:
+  - 3.6
+
+before_install:
+  - pip install -r requirements.txt
+
+services:
+  - postgresql
+
+env:
+  - DATABASE_URL=postgresql://localhost/bucketlist
+
+before_script:
+  - psql -c 'create database bucketlist;' -U postgres
+
+script:
+  - nosetests --with-coverage --cover-package=bucketlist
+
+after_success: coveralls

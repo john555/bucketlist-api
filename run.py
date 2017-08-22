@@ -1,5 +1,6 @@
-from bucketlist.models import User
-from bucketlist.app import app
+from bucketlist import app, db
+
+db.create_all()
 
 if __name__ == '__main__':
     app.run(debug=True)
